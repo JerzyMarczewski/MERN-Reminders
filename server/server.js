@@ -7,7 +7,7 @@ app.use(express.json());
 let users = [{name: "john"}, {name: "emma"}]; 
 
 app.get("/users", (req, res) => {
-    res.json(users);
+    res.send(users);
 });
 
 app.post("/users", async (req, res) => {
