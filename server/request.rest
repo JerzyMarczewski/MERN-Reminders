@@ -1,8 +1,8 @@
-GET http://localhost:5000/users
+GET http://localhost:5000/
 
 ###
 
-POST http://localhost:5000/users
+POST http://localhost:5000/register
 Content-Type: application/json
 
 {
