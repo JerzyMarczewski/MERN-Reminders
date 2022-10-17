@@ -1,15 +1,23 @@
-import {Link, redirect, useNavigate, Redi} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../Context/UserContext";
 
 // TODO: Change password input to text for production
 
 const Register = (props) => {
 
   const navigate = useNavigate()
+
   const [username, setUsername] = useState(""); 
   const [password1, setPassword1] = useState(""); 
   const [password2, setPassword2] = useState(""); 
+
+  const userContextValue = useContext(UserContext);
+
+  useEffect(() => {
+    if (userContextValue) navigate("/");
+  }, []);
 
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
@@ -21,18 +29,15 @@ const Register = (props) => {
 
     axios.post("http://localhost:5000/register", {
       username: username,
-      password1: password1,
-      password2: password2
-    })
-      .then(res => {
-        console.log(res.data);
+      password: password1,
+    }).then(res => {
+        console.log(res.data); // ! should delete later
         if (!res.data.ok)
-          return alert(res.data.message)
+          return alert(res.data.message);
           
         props.cb(username);
+        navigate("/login");
       }).catch(err => console.log(err));
-
-    navigate("/");
   }
 
   return (

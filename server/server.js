@@ -16,14 +16,16 @@ app.use(cors({
 }));
 
 app.post("/register", async (req, res) => {
-  const {username, password1, password2} = req.body;
+  const {username, password} = req.body;
   
 
   if(await User.findOne({username: username}))
     return res.json({ok: false, message: "User with this username already exists"});
 
-  const newUser = new User({username: username, password: password1});
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const newUser = new User({username: username, password: hashedPassword});
   newUser.save().catch(console.log("Error while saving"));
+
   return res.json({ok: true, message: "User registered"});
 });
 
