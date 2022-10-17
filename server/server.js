@@ -1,7 +1,3 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-
 const express = require('express');
 const app = express();
 const cors = require("cors");
@@ -9,6 +5,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const User = require("./models/User");
 const mongoose = require('mongoose');
+require('dotenv').config({path: __dirname + '/../.env'});
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
@@ -18,11 +15,6 @@ app.use(cors({
   optionSuccessStatus:200
 }));
 
-app.get("/", (req,res) => {
-  // res.set('Content-Type', 'application/json')
-  res.json({answer: "Hello"});
-});
-
 app.post("/register", async (req, res) => {
   const {username, password1, password2} = req.body;
   
@@ -31,12 +23,12 @@ app.post("/register", async (req, res) => {
     return res.json({ok: false, message: "User with this username already exists"});
 
   const newUser = new User({username: username, password: password1});
-  newUser.save();
+  newUser.save().catch(console.log("Error while saving"));
   return res.json({ok: true, message: "User registered"});
 });
 
-app.listen(5000)
-mongoose.connect("mongodb://localhost:27017/MERN-TODO",{ useNewUrlParser: true })
+app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
+mongoose.connect(process.env.DB,{ useNewUrlParser: true }, () => console.log("Connected to mongo"));
   // .then(() => {
   //   const newUser = new User({
   //     username: "Jan",

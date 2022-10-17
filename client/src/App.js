@@ -16,7 +16,6 @@ function App() {
 
   function handleRegister(uname){
     setUsername(uname);
-
   } 
 
   return (

@@ -19,19 +19,18 @@ const Register = (props) => {
     if (password1 !== password2) return alert("passwords must be the same");
 
 
-    props.cb(username);
-    // axios.post("http://localhost:5000/register", {
-    //   username: username,
-    //   password1: password1,
-    //   password2: password2
-    // })
-    //   .then(res => {
-    //     console.log(res.data);
-    //     if (!res.data.ok)
-    //       return alert(res.data.message)
+    axios.post("http://localhost:5000/register", {
+      username: username,
+      password1: password1,
+      password2: password2
+    })
+      .then(res => {
+        console.log(res.data);
+        if (!res.data.ok)
+          return alert(res.data.message)
           
-    //     props.cb(username);
-    //   })
+        props.cb(username);
+      }).catch(err => console.log(err));
 
     navigate("/");
   }
