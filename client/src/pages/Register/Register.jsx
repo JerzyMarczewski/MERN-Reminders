@@ -2,10 +2,9 @@ import {Link, redirect, useNavigate, Redi} from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
-
 // TODO: Change password input to text for production
 
-const Register = () => {
+const Register = (props) => {
 
   const navigate = useNavigate()
   const [username, setUsername] = useState(""); 
@@ -17,20 +16,24 @@ const Register = () => {
 
     if (!username) return alert("username is required");
     if (!password1 || !password2) return alert("password fields are required");
-    if (password1 != password2) return alert("passwords must be the same");
+    if (password1 !== password2) return alert("passwords must be the same");
 
-    axios.post("http://localhost:5000/register", {
-      username: username,
-      password1: password1,
-      password2: password2
-    })
-      .then(res => {
-        console.log(res);
-        console.log(res.status);
-        console.log(res.data);
-      })
 
-    // navigate("/");
+    props.cb(username);
+    // axios.post("http://localhost:5000/register", {
+    //   username: username,
+    //   password1: password1,
+    //   password2: password2
+    // })
+    //   .then(res => {
+    //     console.log(res.data);
+    //     if (!res.data.ok)
+    //       return alert(res.data.message)
+          
+    //     props.cb(username);
+    //   })
+
+    navigate("/");
   }
 
   return (

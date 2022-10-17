@@ -1,6 +1,15 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
+const Main = (props) => {
+  const navigate = useNavigate();
 
-const Main = () => {
+  useEffect(() => {
+    if (!props.username)
+      navigate("/register");
+  }, [])
+  
+
   return (
     <div>Main</div>
   )

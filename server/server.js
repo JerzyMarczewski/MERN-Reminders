@@ -28,11 +28,11 @@ app.post("/register", async (req, res) => {
   
 
   if(await User.findOne({username: username}))
-    return res.json({message: "User with this username already exists"});
+    return res.json({ok: false, message: "User with this username already exists"});
 
   const newUser = new User({username: username, password: password1});
   newUser.save();
-  return res.status(201).json({message: "User registered"});
+  return res.json({ok: true, message: "User registered"});
 });
 
 app.listen(5000)
