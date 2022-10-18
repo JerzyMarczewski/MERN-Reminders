@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const User = require("./models/User");
 const mongoose = require('mongoose');
-require('dotenv').config({path: __dirname + '/../.env'});
+require('dotenv').config({path: __dirname + '/.env'});
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
@@ -17,16 +17,30 @@ app.use(cors({
 
 app.post("/register", async (req, res) => {
   const {username, password} = req.body;
-  
 
-  if(await User.findOne({username: username}))
+  if (await User.findOne({username: username}))
     return res.json({ok: false, message: "User with this username already exists"});
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const newUser = new User({username: username, password: hashedPassword});
-  newUser.save().catch(console.log("Error while saving"));
+  newUser.save().catch(err => console.log(err));
 
   return res.json({ok: true, message: "User registered"});
+});
+
+app.post("/login", async (req, res) => {
+  const {username, password} = req.body;
+
+  User.findOne({username: username})
+    .then(user => {
+      if (!user) return res.json({ok: false, message: "User doesn't exist"});
+      
+      return bcrypt.compare(password, user.password);
+    }).then(comparingResult => {
+      if (!comparingResult) return res.json({ok: false, message: "Wrong username or password"});
+
+      return res.json({ok: true, message: "User logged in successfully"})
+    })
 });
 
 app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));

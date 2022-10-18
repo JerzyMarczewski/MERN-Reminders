@@ -31,11 +31,8 @@ const Register = (props) => {
       username: username,
       password: password1,
     }).then(res => {
-        console.log(res.data); // ! should delete later
-        if (!res.data.ok)
-          return alert(res.data.message);
+        if (!res.data.ok) return alert(res.data.message);
           
-        props.cb(username);
         navigate("/login");
       }).catch(err => console.log(err));
   }

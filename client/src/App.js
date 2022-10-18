@@ -17,8 +17,8 @@ function App() {
       <UserContext.Provider value={username}>
         <Routes>
           <Route exact path="/" element={<Main username={username} />}/>
-          <Route path="/login" element={<Login />}/>
-          <Route path="/register" element={<Register cb={(uname) => setUsername(uname)} />} />
+          <Route path="/login" element={<Login cb={(uname) => setUsername(uname)} />}/>
+          <Route path="/register" element={<Register />} />
         </Routes>
       </UserContext.Provider>
      </BrowserRouter>
