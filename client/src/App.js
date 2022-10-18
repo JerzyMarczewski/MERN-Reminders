@@ -8,16 +8,16 @@ import Register from "./pages/Register/Register";
 import {UserContext} from "./Context/UserContext";
 
 function App() {
-  const [username, setUsername] = useState(""); 
+  const [value, setValue] = useState(""); 
 
   return (
     <div className="App">
 
      <BrowserRouter>
-      <UserContext.Provider value={username}>
+      <UserContext.Provider value={{value, setValue}}>
         <Routes>
-          <Route exact path="/" element={<Main username={username} />}/>
-          <Route path="/login" element={<Login cb={(uname) => setUsername(uname)} />}/>
+          <Route exact path="/" element={<Main />}/>
+          <Route path="/login" element={<Login cb={(uname) => setValue(uname)} />}/>
           <Route path="/register" element={<Register />} />
         </Routes>
       </UserContext.Provider>

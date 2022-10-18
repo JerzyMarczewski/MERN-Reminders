@@ -13,10 +13,11 @@ const Register = (props) => {
   const [password1, setPassword1] = useState(""); 
   const [password2, setPassword2] = useState(""); 
 
-  const userContextValue = useContext(UserContext);
+  const {value, setValue} = useContext(UserContext);
 
   useEffect(() => {
-    if (userContextValue) navigate("/");
+    // console.log(userContextValue);
+    // if (userContextValue) navigate("/");
   }, []);
 
   const handleRegisterSubmit = (e) => {
@@ -34,12 +35,12 @@ const Register = (props) => {
         if (!res.data.ok) return alert(res.data.message);
           
         navigate("/login");
-      }).catch(err => console.log(err));
+    }).catch(err => console.log(err));
   }
 
   return (
     <>
-        <h1>Register</h1>
+        <h1>Register{value}</h1>
         <form onSubmit={handleRegisterSubmit}>
             <div>
                 <label htmlFor="name">Name</label>

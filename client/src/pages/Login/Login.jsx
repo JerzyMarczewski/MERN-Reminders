@@ -10,10 +10,11 @@ const Login = (props) => {
   const [username, setUsername] = useState(""); 
   const [password, setPassword] = useState(""); 
 
-  const userContextValue = useContext(UserContext);
+  const {value, setValue} = useContext(UserContext);
 
   useEffect(() => {
-    if (userContextValue) navigate("/");
+    // console.log(userContextValue);
+    if (value) navigate("/");
   }, []);
 
   const handleLoginSubmit = (e) => {
@@ -29,7 +30,7 @@ const Login = (props) => {
       console.log(res.data);
       if (!res.data.ok) return alert(res.data.message);
 
-      props.cb(username);
+      setValue(username);
       navigate("/");
     }).catch(err => console.log(err));
 
@@ -38,7 +39,7 @@ const Login = (props) => {
 
   return (
     <>
-        <h1>Login</h1>
+        <h1>Login{value}</h1>
         <form onSubmit={handleLoginSubmit}>
             <div>
                 <label htmlFor="username">Username</label>

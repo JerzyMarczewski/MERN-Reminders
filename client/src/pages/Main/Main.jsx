@@ -1,17 +1,22 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
 
 const Main = (props) => {
   const navigate = useNavigate();
 
+  const {value, setValue} = useContext(UserContext);
+
   useEffect(() => {
-    if (!props.username)
-      navigate("/register");
+    // if (!userContextValue) navigate("/register");
   }, [])
   
 
   return (
-    <div>Main</div>
+    <>
+      <div>Main: {value}</div>
+      <Link to="/login">Login</Link>
+    </>
   )
 }
 
