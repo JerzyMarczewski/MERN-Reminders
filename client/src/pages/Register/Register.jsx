@@ -15,11 +15,6 @@ const Register = (props) => {
 
   const {value, setValue} = useContext(UserContext);
 
-  useEffect(() => {
-    // console.log(userContextValue);
-    // if (userContextValue) navigate("/");
-  }, []);
-
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
 
@@ -40,7 +35,7 @@ const Register = (props) => {
 
   return (
     <>
-        <h1>Register{value}</h1>
+        <h1>Register</h1>
         <form onSubmit={handleRegisterSubmit}>
             <div>
                 <label htmlFor="name">Name</label>
