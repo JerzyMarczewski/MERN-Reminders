@@ -30,7 +30,7 @@ const Login = (props) => {
       console.log(res.data);
       if (!res.data.ok) return alert(res.data.message);
 
-      setValue(username);
+      setValue(username.toLowerCase());
       navigate("/");
     }).catch(err => console.log(err));
 

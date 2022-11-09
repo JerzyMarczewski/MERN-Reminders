@@ -4,6 +4,7 @@ import { UserContext } from "../../Context/UserContext";
 import styles from "./Main.module.css";
 import { Icon } from '@iconify/react';
 import ListMenuButton from "../../components/ListMenuButton/ListMenuButton";
+import axios from "axios";
 
 // sample list
 let lists = [
@@ -58,6 +59,9 @@ const Main = (props) => {
 
   useEffect(() => {
     if (!value) navigate("/login");
+
+    axios.get(`http://localhost:5000/${value}/lists`)
+      .then(x => console.log(x.data))
   }, [])
   
 
@@ -74,7 +78,7 @@ const Main = (props) => {
       <div className={styles.listsMenu}>
         <p className={styles.myLists}>My lists</p>
         <div className={styles.listsContainer}>
-          {lists.map(list => <ListMenuButton list={list}/>)}
+          {lists.map(list => <ListMenuButton list={list} />) /* ADD KEYS*/}
         </div>
       </div>
       <div className={styles.addListButton}>add list</div>

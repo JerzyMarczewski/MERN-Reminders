@@ -43,6 +43,10 @@ app.post("/login", async (req, res) => {
     })
 });
 
+app.get("/:username/lists", async (req, res) => {
+  res.send(req.params)
+}) 
+
 app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
 mongoose.connect(process.env.DB,{ useNewUrlParser: true }, () => console.log("Connected to mongo"));
   // .then(() => {

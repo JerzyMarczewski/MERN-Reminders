@@ -9,7 +9,7 @@
     padding: 10px 20px;
 
     background-color: #fff;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #000;
 }
 
 .container:first-child{
