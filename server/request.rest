@@ -1,11 +1,26 @@
-GET http://localhost:5000/mango/lists
+### get user's lists
+GET http://localhost:5000/jurek/lists
 
-###
-
-POST http://localhost:5000/register
+### add list
+POST http://localhost:5000/jurek/lists/add
 Content-Type: application/json
 
 {
-    "name": "john",
-    "password": "johny95"
+    "name": "lista 2"
+}
+
+### remove list with given id
+POST http://localhost:5000/jurek/lists/remove
+Content-Type: application/json
+
+{
+    "id": "636d34304a38e0092fde5fec"
+}
+### add item to a list with a given id
+POST http://localhost:5000/jurek/lists/items/add
+Content-Type: application/json
+
+{
+    "id": "636d319cc1acdf944d2945a2",
+    "name": ""
 }

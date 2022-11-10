@@ -13,7 +13,6 @@ const Login = (props) => {
   const {value, setValue} = useContext(UserContext);
 
   useEffect(() => {
-    // console.log(userContextValue);
     if (value) navigate("/");
   }, []);
 

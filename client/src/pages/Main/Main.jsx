@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import styles from "./Main.module.css";
@@ -7,61 +7,66 @@ import ListMenuButton from "../../components/ListMenuButton/ListMenuButton";
 import axios from "axios";
 
 // sample list
-let lists = [
-  {
-    name: "list 1",
-    color: "04A5AA",
-    items: [
-        {
-            name: "item 1",
-            date: null,
-            done: false
-        },
-        {
-            name: "item 2",
-            date: null,
-            done: false
-        },
-        {
-          name: "item 3",
-          date: null,
-          done: true
-      }
-    ]
-  },
-  {
-    name: "list 2",
-    color: "DB162F",
-    items: [
-        {
-            name: "item 1",
-            date: null,
-            done: false
-        }
-    ]
-  },
-  {
-    name: "list 3",
-    color: "DFD630",
-    items: []
-  },
-  {
-    name: "list 4",
-    color: "09588E",
-    items: []
-  }
-]
+// let lists = [
+//   {
+//     id: "636a8b9bf6a0115ae935af9f",
+//     name: "list 1",
+//     color: "04A5AA",
+//     items: [
+//         {
+//             name: "item 1",
+//             date: null,
+//             done: false
+//         },
+//         {
+//             name: "item 2",
+//             date: null,
+//             done: false
+//         },
+//         {
+//           name: "item 3",
+//           date: null,
+//           done: true
+//       }
+//     ]
+//   },
+//   {
+//     id: "636a8b9bf6a0115ae935af9g",
+//     name: "list 2",
+//     color: "DB162F",
+//     items: [
+//         {
+//             name: "item 1",
+//             date: null,
+//             done: false
+//         }
+//     ]
+//   },
+//   {
+//     id: "636a8b9bf6a0115ae935af9h",
+//     name: "list 3",
+//     color: "DFD630",
+//     items: []
+//   },
+//   {
+//     id: "636a8b9bf6a0115ae935af9i",
+//     name: "list 4",
+//     color: "09588E",
+//     items: []
+//   }
+// ]
 
 const Main = (props) => {
   const navigate = useNavigate();
 
   const {value, setValue} = useContext(UserContext);
+  const [lists, setLists] = useState(null);
 
   useEffect(() => {
     if (!value) navigate("/login");
 
     axios.get(`http://localhost:5000/${value}/lists`)
-      .then(x => console.log(x.data))
+      .then(res => setLists(res.data))
   }, [])
   
 
@@ -78,7 +83,11 @@ const Main = (props) => {
       <div className={styles.listsMenu}>
         <p className={styles.myLists}>My lists</p>
         <div className={styles.listsContainer}>
-          {lists.map(list => <ListMenuButton list={list} />) /* ADD KEYS*/}
+          {
+          (lists) 
+            ? lists.map(list => <ListMenuButton list={list} key={list.id} id={list.id}/>)
+            : "loading..."
+          }
         </div>
       </div>
       <div className={styles.addListButton}>add list</div>

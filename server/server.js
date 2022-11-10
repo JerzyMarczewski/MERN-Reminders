@@ -44,8 +44,58 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/:username/lists", async (req, res) => {
-  res.send(req.params)
+  const user = await User.findOne({username: req.params.username});
+
+  // simulation of time
+  setTimeout(() => res.send(user.lists), 2000);
+
 }) 
+
+// ! only for testing
+app.post("/:username/lists/add", async (req, res) => {
+  const {name} = req.body;
+
+  const user = await User.findOne({username: req.params.username});
+
+  user.lists.push({name: name, color: "000000"});
+  const subdoc = user.lists[0];
+  console.log(subdoc);
+
+  user.save(function (err) {
+    if (err) return handleError(err)
+    console.log('Success!');
+  });
+});
+
+// ! only for testing
+app.post("/:username/lists/remove", async (req, res) => {
+  const {id} = req.body;
+  const user = await User.findOne({username: req.params.username});
+
+  if (!user) console.log("user not found!");
+
+  user.lists.id(id).remove();
+
+  user.save(function (err) {
+    if (err) return handleError(err)
+    console.log('Success!');
+  });
+});
+
+// ! only for testing
+app.post("/:username/lists/items/add", async (req, res) => {
+  const {id, name} = req.body;
+  const user = await User.findOne({username: req.params.username});
+  const list = user.lists.id(id);
+
+  list.items.push({name: name});
+
+  user.save(function (err) {
+    if (err) return handleError(err)
+    console.log('Success!');
+  });
+});
+
 
 app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
 mongoose.connect(process.env.DB,{ useNewUrlParser: true }, () => console.log("Connected to mongo"));
