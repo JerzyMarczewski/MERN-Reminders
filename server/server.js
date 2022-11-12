@@ -53,11 +53,11 @@ app.get("/:username/lists", async (req, res) => {
 
 // ! only for testing
 app.post("/:username/lists/add", async (req, res) => {
-  const {name} = req.body;
+  const {name, color} = req.body;
 
   const user = await User.findOne({username: req.params.username});
 
-  user.lists.push({name: name, color: "000000"});
+  user.lists.push({name: name, color: color});
   const subdoc = user.lists[0];
   console.log(subdoc);
 

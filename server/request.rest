@@ -6,7 +6,8 @@ POST http://localhost:5000/jurek/lists/add
 Content-Type: application/json
 
 {
-    "name": "lista 2"
+    "name": "Shopping list",
+    "color": "e3ff00"
 }
 
 ### remove list with given id
