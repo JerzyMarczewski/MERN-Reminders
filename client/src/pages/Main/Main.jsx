@@ -14,6 +14,7 @@ const Main = (props) => {
   const {value, setValue} = useContext(UserContext);
   const [lists, setLists] = useState(null);
   const [searchInput, setSearchInput] = useState("");
+  const [addListWindowShown, setAddListWindowShown] = useState(false)
 
   useEffect(() => {
     if (!value) navigate("/login");
@@ -25,7 +26,7 @@ const Main = (props) => {
 
   return (
     <div className={styles.container}>
-      <AddList />
+      <AddList isVisible={[addListWindowShown, setAddListWindowShown]}/>
       <div className={styles.navbar}>
         <h4 className={styles.logo}>MERN-REMINDERS</h4>
         <Icon icon="mi:options-horizontal" inline={true} width="30" />
@@ -46,7 +47,7 @@ const Main = (props) => {
           }
         </div>
       </div>
-      <div className={styles.addListButton}>add list</div>
+      <div className={styles.addListButton} onClick={() => setAddListWindowShown(true)}>add list</div>
     </div>
   )
 }
