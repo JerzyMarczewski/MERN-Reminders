@@ -25,7 +25,11 @@ const ListSchema = new mongoose.Schema({
     // ! length must be 6
     color: {
         type: String,
-        required: true
+        default: "45B3E7"
+    },
+    icon: {
+        type: String,
+        default: "ic:round-format-list-bulleted"
     },
     items: [ItemSchema]
 });
