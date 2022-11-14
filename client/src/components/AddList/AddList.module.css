@@ -128,3 +128,32 @@
     border-color: #000;
     border-radius: 50%;
 }
+
+.iconSelect {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+
+    width: 100%;
+    padding: 20px 20px;
+    margin: 20px 0;
+
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.iconCircle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 4px;
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    background-color: #909096;
+    border-width: 0;
+    border-style: solid;
+    border-color: #000;
+    border-radius: 50%;
+}
