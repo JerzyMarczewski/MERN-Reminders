@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react';
 import ListMenuButton from "../../components/ListMenuButton/ListMenuButton";
 import AddList from "../../components/AddList/AddList";
 import axios from "axios";
+import useMountTransition from "../../hooks/useMountTransition";
 
 
 const Main = (props) => {
@@ -14,7 +15,10 @@ const Main = (props) => {
   const {value, setValue} = useContext(UserContext);
   const [lists, setLists] = useState(null);
   const [searchInput, setSearchInput] = useState("");
-  const [addListWindowShown, setAddListWindowShown] = useState(false)
+
+  // for AddList component
+  const [isMounted, setIsMounted] = useState(false);
+  const hasTransitionedIn = useMountTransition(isMounted, 500);
 
   useEffect(() => {
     if (!value) navigate("/login");
@@ -26,7 +30,7 @@ const Main = (props) => {
 
   return (
     <div className={styles.container}>
-      <AddList isVisible={[addListWindowShown, setAddListWindowShown]}/>
+      {(hasTransitionedIn || isMounted) && <AddList mounted={[isMounted, setIsMounted]} hasTransitionedIn={hasTransitionedIn} />}
       <div className={styles.navbar}>
         <h4 className={styles.logo}>MERN-REMINDERS</h4>
         <Icon icon="mi:options-horizontal" inline={true} width="30" />
@@ -47,7 +51,7 @@ const Main = (props) => {
           }
         </div>
       </div>
-      <div className={styles.addListButton} onClick={() => setAddListWindowShown(true)}>add list</div>
+      <div className={styles.addListButton} onClick={() => setIsMounted(true)}>add list</div>
     </div>
   )
 }

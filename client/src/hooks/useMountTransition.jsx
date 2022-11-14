@@ -7,9 +7,9 @@ const useMountTransition = (isMounted, unmountDelay) => {
         let timoutId;
 
         if (isMounted && !hasTransitionedIn) {
-            setHasTransitionedIn(true)
+            setHasTransitionedIn(true);
         } else if (!isMounted && hasTransitionedIn) {
-            timoutId = setTimeout(() => setHasTransitionedIn(false), unmountDelay)
+            timoutId = setTimeout(() => setHasTransitionedIn(false), unmountDelay);
         }
 
         return () => clearTimeout(timoutId);

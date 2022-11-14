@@ -16,7 +16,7 @@
     border-radius: 25px 25px 0 0;
     opacity: 0;
     z-index: 2;
-    transition: all 0.5s ease;
+    transition: top 0.5s ease, opacity 0.5s ease;
 }
 
 .container.in.visible {
@@ -34,10 +34,12 @@
 
 .controls > h3 {
     text-align: center;
+    cursor: pointer;
 }
 
 .controls > div {
     color: #45B3E7;
+    cursor: pointer;
 }
 
 .controls > div:first-child {
@@ -100,4 +102,29 @@
 
 .listName > input:focus::placeholder {
     color: transparent;
+}
+
+.colorSelect {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+
+    width: 100%;
+    padding: 20px 20px;
+    margin: 0px 0;
+
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.colorOption{
+    margin: 4px;
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    
+    border-width: 0;
+    border-style: solid;
+    border-color: #000;
+    border-radius: 50%;
 }
