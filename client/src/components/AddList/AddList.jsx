@@ -38,10 +38,7 @@ const AddList = (props) => {
   return (
             <div className={`${styles.container} ${props.hasTransitionedIn && styles.in} ${isMounted && styles.visible} `}>
                 <div className={styles.controls}>
-                    <div onClick={() => {
-                            setIsMounted(false);
-                        }
-                    }>Cancel</div>
+                    <div onClick={() => setIsMounted(false)}>Cancel</div>
                     <h3>New list</h3>
                     <div style={inputValue ? {} : {color: 'grey'}}>OK</div>
                 </div>
@@ -56,7 +53,7 @@ const AddList = (props) => {
                                 style={{color: `#${selectedColor}`}}
                                 value={inputValue} 
                                 onChange={(e) => setInputValue(e.target.value)} 
-                                autoFocus
+                                
                             />
                     </div>
                 </div>
