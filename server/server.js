@@ -39,17 +39,16 @@ app.post("/login", async (req, res) => {
     }).then(comparingResult => {
       if (!comparingResult) return res.json({ok: false, message: "Wrong username or password"});
 
-      return res.json({ok: true, message: "User logged in successfully"})
+      return res.json({ok: true, message: "User logged in successfully"});
     })
 });
 
 app.get("/:username/lists", async (req, res) => {
   const user = await User.findOne({username: req.params.username});
 
-  // simulation of time
-  setTimeout(() => res.send(user.lists), 2000);
+  res.send(user.lists);
 
-}) 
+});
 
 // ! only for testing
 app.post("/:username/lists/add", async (req, res) => {
@@ -96,43 +95,38 @@ app.post("/:username/lists/items/add", async (req, res) => {
   });
 });
 
+app.post("/:username/lists/items/edit-name", async (req, res) => {
+  const {listId, itemId, name: newName} = req.body;
+  const user = await User.findOne({username: req.params.username})
+  const list = await user.lists.id(listId);
+  const item = await list.items.id(itemId);
+
+  item.name = newName;
+
+  user.save(function (err) {
+    if (err) return res.json({ok: false, message: "Item edited unsuccesfully"});
+    
+    return res.json({ok: true, message: "Item edited succesfully"});
+  });
+
+  
+});
+
 
 app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
-mongoose.connect(process.env.DB,{ useNewUrlParser: true }, () => console.log("Connected to mongo"));
-  // .then(() => {
-  //   const newUser = new User({
-  //     username: "Jan",
-  //     password: "Janek1"
-  //   });
-  //   newUser.save();
-  // })
 
 
-// app.post("/users", async (req, res) => {
-//     try {
-//         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-//         const user = {name: req.body.name, password: hashedPassword};
-//         res.status(200).send(user);
-//     } catch {
-//         res.status(500).send();
-//     }
+mongoose.connect(process.env.DB,{ useNewUrlParser: true });
+mongoose.connection.on("error", (e) => {
+  console.log("mongo connect error!");
+});
+mongoose.connection.on("connected", () => {
+  console.log("connected to mongo");
+});
+
+// mongoose.connect(process.env.DB,{ useNewUrlParser: true }, (err) => {
+//   if (err) return console.log(err);
+
+//   return console.log("Connected to MongoDB");
 // });
-
-    
-
-// .then(() => console.log("Connected to mongo"))
-    // .then(() => {
-    //     const newUser = new User({
-    //         name: "jan",
-    //         email: "jan@mail.com",
-    //         password: "jan1"
-    //       });
-
-        
-    //     const hp = newUser.hashPassword(newUser.password);
-    //     hp.then((x) => console.log(x))
-    //     newUser.save();
-    // });
-
-
-
+  
