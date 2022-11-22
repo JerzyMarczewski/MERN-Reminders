@@ -26,7 +26,7 @@ const AddList = (props) => {
     const [inputValue, setInputValue] = useState("");
     const [selectedColor, setSelectedColor] = useState(COLORS[0]);
     const [selectedIcon, setSelectedIcon] = useState(ICONS[0]);
-    const [isMounted, setIsMounted] = props.mounted;
+    const [isMounted, setIsMounted] = props.isMountedState;
     
 
     useEffect(() => {

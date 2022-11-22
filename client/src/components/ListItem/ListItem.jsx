@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useRef } from 'react';
+import { useState, useContext, useEffect, useRef, forwardRef } from 'react';
 import { UserContext } from "../../Context/UserContext";
 import { FetchContext } from '../../Context/FetchContext';
 import axios from "axios";
@@ -6,16 +6,25 @@ import axios from "axios";
 
 
 
-const ListItem = (props) => {
+const ListItem = forwardRef((props, ref) => {
   const {value: username} = useContext(UserContext);
   const {fetchIteration, setFetchIteration} = useContext(FetchContext);
 
-  const [inputValue, setInputValue] = useState(props.item.name);
+  const [inputValue, setInputValue] = useState("");
 
-  const inputRef = useRef(null);
+
+  // making the fowarRef optional
+  const localRef = useRef(null);
+  const inputRef = ref || localRef; 
 
   useEffect(() => {
-    console.log(inputRef.current);
+    if (!props.newItem)
+      setInputValue(props.item.name);
+
+    if (props.newItem && inputRef)
+      inputRef.current.focus();
+
+
     const listener = (e) => {
       
       if (e.code === "Enter" || e.code === "NumpadEnter"){
@@ -28,10 +37,13 @@ const ListItem = (props) => {
     return () => {
       document.removeEventListener("keydown", listener);
     };
-  }, []);
+  }, [props]);
   
 
   const handleItemBlur = async () => {
+    if (props.newItem && inputRef) return; // ! this will be a different post request
+
+
     axios.post(`http://localhost:5000/${username}/lists/items/edit-name`, {
         listId: props.parentList._id,
         itemId: props.item._id,
@@ -51,8 +63,9 @@ const ListItem = (props) => {
           onChange={e => setInputValue(e.target.value)} 
           onBlur={handleItemBlur}
         />
+        {props.item && props.item.name}
     </div>
   )
-}
+});
 
-export default ListItem
+export default ListItem;
