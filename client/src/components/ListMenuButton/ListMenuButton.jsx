@@ -8,7 +8,7 @@ const ListMenuButton = (props) => {
     <div className={styles.container} onClick={() => props.onClickCustomEvent()}>
         <div className={styles.listName}>
               <div className={styles.listIcon} style={{backgroundColor: `#${props.list.color}`}}>
-                <Icon icon="ant-design:unordered-list-outlined"/>
+                <Icon icon={props.list.icon}/>
               </div>
               <div>{props.list.name}</div>
             </div>

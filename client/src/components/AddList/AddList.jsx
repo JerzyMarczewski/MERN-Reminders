@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Icon } from '@iconify/react';
 import styles from "./AddList.module.css";
+import { UserContext } from '../../Context/UserContext';
+import { FetchContext } from '../../Context/FetchContext';
+import axios from "axios";
 
-// TODO - change width of control buttons
 
  
 const COLORS = ["45B3E7","0078ff","bd00ff","ff9a00","01ff1f","e3ff00"]
@@ -23,6 +25,9 @@ const ICONS = [
 ]
 
 const AddList = (props) => {
+    const {value: username} = useContext(UserContext);
+    const {fetchIteration, setFetchIteration} = useContext(FetchContext);
+
     const [inputValue, setInputValue] = useState("");
     const [selectedColor, setSelectedColor] = useState(COLORS[0]);
     const [selectedIcon, setSelectedIcon] = useState(ICONS[0]);
@@ -34,13 +39,27 @@ const AddList = (props) => {
         setSelectedColor("45B3E7");
     }, []);
 
+    const handleOkClick = async () => {
+        if (inputValue === "")
+            return;
+
+        console.log(inputValue);
+        axios.post(`http://localhost:5000/${username}/lists/add`, {
+                name: inputValue,
+                color: selectedColor,
+                icon: selectedIcon
+            })
+            .then(() => setFetchIteration(fetchIteration + 1))
+            .then(() => setIsMounted(false))
+            .catch(err => console.log(err));
+    }
 
   return (
             <div className={`${styles.container} ${props.hasTransitionedIn && styles.in} ${isMounted && styles.visible} `}>
                 <div className={styles.controls}>
                     <div onClick={() => setIsMounted(false)}>Cancel</div>
                     <h3>New list</h3>
-                    <div style={inputValue ? {} : {color: 'grey'}}>OK</div>
+                    <div style={inputValue ? {} : {color: 'grey'}} onClick={handleOkClick}>OK</div>
                 </div>
                 <div className={styles.listPreview}>
                     <div className={styles.listIcon} style={{backgroundColor: `#${selectedColor}`}}>

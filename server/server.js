@@ -52,17 +52,17 @@ app.get("/:username/lists", async (req, res) => {
 
 // ! only for testing
 app.post("/:username/lists/add", async (req, res) => {
-  const {name, color} = req.body;
+  const {name, color, icon} = req.body;
 
   const user = await User.findOne({username: req.params.username});
 
-  user.lists.push({name: name, color: color});
-  const subdoc = user.lists[0];
-  console.log(subdoc);
+  user.lists.push({name: name, color: color, icon: icon});
+  
 
-  user.save(function (err) {
-    if (err) return handleError(err)
-    console.log('Success!');
+  user.save((err) => {
+    if (err) return res.json({ok: false, message: "List added unsuccesfully"});
+    
+    return res.json({ok: true, message: "List added succesfully"});
   });
 });
 
