@@ -22,6 +22,26 @@ POST http://localhost:5000/jurek/lists/items/add
 Content-Type: application/json
 
 {
-    "id": "636d319cc1acdf944d2945a2",
-    "name": ""
+    "listId": "636d319cc1acdf944d2945a2",
+    "name": "item 4",
+    "date": null
+}
+
+### edit an item of a list
+POST http://localhost:5000/jurek/lists/items/edit-name
+Content-Type: application/json
+
+{
+    "listId": "636d319cc1acdf944d2945a2",
+    "itemId": "636d32554b991968997d8613",
+    "name": "ITEM no 2"
+}
+
+### remove an item of a list
+POST http://localhost:5000/jurek/lists/items/remove
+Content-Type: application/json
+
+{
+    "listId": "636d319cc1acdf944d2945a2",
+    "itemId": "636d32554b991968997d8613"
 }

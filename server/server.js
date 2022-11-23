@@ -81,42 +81,56 @@ app.post("/:username/lists/remove", async (req, res) => {
   });
 });
 
-// ! only for testing
+
 app.post("/:username/lists/items/add", async (req, res) => {
-  const {id, name} = req.body;
+  const {listId, name, date} = req.body;
   const user = await User.findOne({username: req.params.username});
-  const list = user.lists.id(id);
+  const list = user.lists.id(listId);
 
-  list.items.push({name: name});
+  list.items.push({name: name, date: date});
 
-  user.save(function (err) {
-    if (err) return handleError(err)
-    console.log('Success!');
+  user.save((err) => {
+    if (err) return res.json({ok: false, message: "Item added unsuccesfully"});
+    
+    return res.json({ok: true, message: "Item added succesfully"});
   });
 });
 
 app.post("/:username/lists/items/edit-name", async (req, res) => {
   const {listId, itemId, name: newName} = req.body;
-  const user = await User.findOne({username: req.params.username})
-  const list = await user.lists.id(listId);
-  const item = await list.items.id(itemId);
+  const user = await User.findOne({username: req.params.username});
+  const list = user.lists.id(listId);
+  const item = list.items.id(itemId);
 
   item.name = newName;
 
-  user.save(function (err) {
+  user.save((err) => {
     if (err) return res.json({ok: false, message: "Item edited unsuccesfully"});
     
     return res.json({ok: true, message: "Item edited succesfully"});
   });
+});
 
-  
+app.post("/:username/lists/items/remove", async (req, res) => {
+  const {listId, itemId} = req.body;
+  const user = await User.findOne({username: req.params.username});
+  const list = user.lists.id(listId);
+  const item = list.items.id(itemId);
+
+  item.remove();
+
+  user.save((err) => {
+    if (err) return res.json({ok: false, message: "Item removed unsuccesfully"});
+    
+    return res.json({ok: true, message: "Item removed succesfully"});
+  });
 });
 
 
 app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
 
 
-mongoose.connect(process.env.DB,{ useNewUrlParser: true });
+mongoose.connect(process.env.DB, { useNewUrlParser: true });
 mongoose.connection.on("error", (e) => {
   console.log("mongo connect error!");
 });
@@ -124,9 +138,4 @@ mongoose.connection.on("connected", () => {
   console.log("connected to mongo");
 });
 
-// mongoose.connect(process.env.DB,{ useNewUrlParser: true }, (err) => {
-//   if (err) return console.log(err);
-
-//   return console.log("Connected to MongoDB");
-// });
   

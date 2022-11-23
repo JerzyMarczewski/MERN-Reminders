@@ -4,6 +4,8 @@ import { FetchContext } from '../../Context/FetchContext';
 import axios from "axios";
 
 // TODO: add the possibility of adding and editing the date
+// TODO: make this element look good
+// TODO: add the ability to remove items
 
 
 const ListItem = forwardRef((props, ref) => {
@@ -67,6 +69,18 @@ const ListItem = forwardRef((props, ref) => {
     }
   }
 
+  const handleRemove = async () => {
+    if (!props.parentList || !props.item)
+      return;
+      
+    axios.post(`http://localhost:5000/${username}/lists/items/remove`, {
+        listId: props.parentList._id,
+        itemId: props.item._id
+      })
+      .then(() => setFetchIteration(fetchIteration + 1))
+      .catch(err => console.log(err));
+  }
+
     
     
   return (
@@ -78,7 +92,7 @@ const ListItem = forwardRef((props, ref) => {
           onChange={e => setInputValue(e.target.value)} 
           onBlur={handleItemBlur}
         />
-        {props.item && props.item.name}
+        {!props.newItem &&<button onClick={handleRemove}>remove</button>}
     </div>
   )
 });
