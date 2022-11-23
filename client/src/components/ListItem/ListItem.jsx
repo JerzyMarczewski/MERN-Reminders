@@ -3,7 +3,7 @@ import { UserContext } from "../../Context/UserContext";
 import { FetchContext } from '../../Context/FetchContext';
 import axios from "axios";
 
-
+// TODO: add the possibility of adding and editing the date
 
 
 const ListItem = forwardRef((props, ref) => {
@@ -41,18 +41,33 @@ const ListItem = forwardRef((props, ref) => {
   
 
   const handleItemBlur = async () => {
-    if (props.newItem && inputRef) return; // ! this will be a different post request
-
-
-    axios.post(`http://localhost:5000/${username}/lists/items/edit-name`, {
+    // scenario when the current item is a temporary list item 
+    if (props.parentList && props.newItem && inputValue !== ""){
+      axios.post(`http://localhost:5000/${username}/lists/items/add`, {
+          listId: props.parentList._id,
+          name: inputValue,
+          date: null // ! change for a real value in the future 
+        })
+        .then(() => setFetchIteration(fetchIteration + 1))
+        .catch(err => console.log(err));
+      
+      
+      return;
+    }
+      
+    // scenario when the current item is a regular list item  
+    if (props.parentList && props.item) {
+      axios.post(`http://localhost:5000/${username}/lists/items/edit-name`, {
         listId: props.parentList._id,
         itemId: props.item._id,
         name: inputValue
       })
       .then(() => setFetchIteration(fetchIteration + 1))
       .catch(err => console.log(err));
+    }
   }
 
+    
     
   return (
     <div>

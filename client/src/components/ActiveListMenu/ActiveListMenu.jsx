@@ -14,11 +14,11 @@ const ActiveListMenu = (props) => {
 
 
     const handleClick = (e) => {
-        // ! add scenario where newItem is active and user clicks it
 
 
-        if (myListsRef && myListsRef.current.contains(e.target))
-            props.clickedBack();
+        if (myListsRef && myListsRef.current.contains(e.target)) {
+            props.onMyListClick();
+        }
 
         if (!itemCreationShown && itemsContainerRef.current === e.target) {
             setItemCreationShown(true);
@@ -69,7 +69,7 @@ const ActiveListMenu = (props) => {
                     />
                 )
             }
-            {itemCreationShown && 
+            {itemCreationShown && !props.isLoading &&
                  <ListItem 
                     newItem={true}
                     parentList={props.currentList}
