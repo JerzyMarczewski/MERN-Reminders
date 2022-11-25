@@ -28,9 +28,9 @@ const AddList = (props) => {
     const {value: username} = useContext(UserContext);
     const {fetchIteration, setFetchIteration} = useContext(FetchContext);
 
-    const [inputValue, setInputValue] = useState("");
-    const [selectedColor, setSelectedColor] = useState(COLORS[0]);
-    const [selectedIcon, setSelectedIcon] = useState(ICONS[0]);
+    const [inputValue, setInputValue] = useState(props.currentList ? props.currentList.name :"");
+    const [selectedColor, setSelectedColor] = useState(props.currentList ? props.currentList.color : COLORS[0]);
+    const [selectedIcon, setSelectedIcon] = useState(props.currentList ? props.currentList.icon : ICONS[0]);
     const [isMounted, setIsMounted] = props.isMountedState;
     
 
@@ -42,15 +42,28 @@ const AddList = (props) => {
         if (inputValue === "")
             return;
 
-        console.log(inputValue);
-        axios.post(`http://localhost:5000/${username}/lists/add`, {
-                name: inputValue,
-                color: selectedColor,
-                icon: selectedIcon
-            })
-            .then(() => setFetchIteration(fetchIteration + 1))
-            .then(() => setIsMounted(false))
-            .catch(err => console.log(err));
+        if (props.currentList){
+            axios.post(`http://localhost:5000/${username}/lists/edit`, {
+                    listId: props.currentList._id,
+                    newName: inputValue,
+                    newColor: selectedColor,
+                    newIcon: selectedIcon
+                })
+                .then(() => setFetchIteration(fetchIteration + 1))
+                .then(() => setIsMounted(false))
+                .catch(err => console.log(err));
+        }
+
+        if (!props.currentList) {
+            axios.post(`http://localhost:5000/${username}/lists/add`, {
+                    name: inputValue,
+                    color: selectedColor,
+                    icon: selectedIcon
+                })
+                .then(() => setFetchIteration(fetchIteration + 1))
+                .then(() => setIsMounted(false))
+                .catch(err => console.log(err));
+        }
     }
 
   return (

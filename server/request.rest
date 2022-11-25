@@ -28,13 +28,21 @@ Content-Type: application/json
 }
 
 ### edit an item of a list
-POST http://localhost:5000/jurek/lists/items/edit-name
+POST http://localhost:5000/jurek/lists/items/edit
 Content-Type: application/json
 
 {
     "listId": "636d319cc1acdf944d2945a2",
-    "itemId": "636d32554b991968997d8613",
+    "itemId": "637dfa519485db695fbe9f61",
     "name": "ITEM no 2"
+}
+### edit status of an item of a list
+POST http://localhost:5000/jurek/lists/items/edit-status
+Content-Type: application/json
+
+{
+    "listId": "636d319cc1acdf944d2945a2",
+    "itemId": "637dfa519485db695fbe9f61"
 }
 
 ### remove an item of a list

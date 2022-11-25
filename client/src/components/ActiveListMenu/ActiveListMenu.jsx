@@ -3,10 +3,16 @@ import styles from "./ActiveListMenu.module.css";
 import { Icon } from "@iconify/react";
 import ListItem from "../ListItem/ListItem";
 import OptionsDropdown from "../OptionsDropdown/OptionsDropdown";
+import { useMountTransition } from "../../hooks/useMountTransition";
+import AddList from "../AddList/AddList";
 
 const ActiveListMenu = (props) => {
   const [itemCreationShown, setItemCreationShown] = useState(false);
   const [showDoneItems, setShowDoneItems] = useState(false);
+
+  // for AddList component
+  const [addListIsMounted, setAddListIsMounted] = useState(false);
+  const addListHasTransitionedIn = useMountTransition(addListIsMounted, 500);
 
   const myListsRef = useRef(null);
   const itemsContainerRef = useRef(null);
@@ -50,12 +56,24 @@ const ActiveListMenu = (props) => {
       }
       onClick={(e) => handleClick(e)}
     >
+      {(addListHasTransitionedIn || addListIsMounted) && (
+        <AddList
+          currentList={props.currentList}
+          isMountedState={[addListIsMounted, setAddListIsMounted]}
+          hasTransitionedIn={addListHasTransitionedIn}
+        />
+      )}
       <div className={styles.controls}>
         <div className={styles.myLists} ref={myListsRef}>
           <Icon icon="material-symbols:arrow-back-ios-new-rounded" width="22" />
           <div className={styles.myListsText}>My lists</div>
         </div>
-        <OptionsDropdown currentList={props.currentList} resetClickedList={() => props.resetClickedList()} showDoneItems={[showDoneItems, setShowDoneItems]} />
+        <OptionsDropdown
+          currentList={props.currentList}
+          resetClickedList={() => props.resetClickedList()}
+          showDoneItems={[showDoneItems, setShowDoneItems]}
+          handleListInfoClick={() => setAddListIsMounted(true)}
+        />
       </div>
       <div
         className={styles.listName}

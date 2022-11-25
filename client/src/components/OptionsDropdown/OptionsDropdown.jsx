@@ -4,28 +4,30 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { FetchContext } from "../../Context/FetchContext";
 import axios from "axios";
+import { useMountTransition } from "../../hooks/useMountTransition";
+import AddList from "../AddList/AddList";
 
 const Dropdown = (props) => {
-    const {value: username} = useContext(UserContext);
-    const {fetchIteration, setFetchIteration} = useContext(FetchContext);
-    const [showDoneItems, setShowDoneItems] = props.showDoneItems;
+  const { value: username } = useContext(UserContext);
+  const { fetchIteration, setFetchIteration } = useContext(FetchContext);
+  const [showDoneItems, setShowDoneItems] = props.showDoneItems;
 
   const [dropdownShown, setDropdownShown] = useState(false);
 
-  
   const handleDeleteClick = async () => {
     if (!username) return;
 
     if (props.currentList) {
-        axios.post(`http://localhost:5000/${username}/lists/remove`, {
+      axios
+        .post(`http://localhost:5000/${username}/lists/remove`, {
           listId: props.currentList._id,
         })
         .then(() => setFetchIteration(fetchIteration + 1))
         .then(props.resetClickedList())
         .then(() => setDropdownShown(false))
-        .catch(err => console.log(err));
-      }
-  }
+        .catch((err) => console.log(err));
+    }
+  };
 
   if (!dropdownShown)
     return (
@@ -39,7 +41,13 @@ const Dropdown = (props) => {
       <div className={styles.options}>
         <Icon icon="mi:options-horizontal" width="42" />
         <div className={styles.dropdown}>
-          <div className={styles.dropdownItem}>
+          <div
+            className={styles.dropdownItem}
+            onClick={() => {
+              setDropdownShown(false);
+              props.handleListInfoClick();
+            }}
+          >
             <div>List's information</div>
             <Icon icon="material-symbols:info-outline-rounded" />
           </div>
