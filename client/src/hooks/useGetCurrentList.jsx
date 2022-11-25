@@ -5,11 +5,12 @@ export const useGetCurrentList = (lists, clickedList) => {
     const [currentList, setCurrentList] = useState(null);
 
     useEffect(() => {
-        console.log("useGetCurrentList hook used");
+        if (clickedList === null)
+            setCurrentList(null);
+        
         if (lists && clickedList) {
             lists.forEach(list => {
                 if (list._id === clickedList._id) {
-                    console.log("found element");
                     setCurrentList(list);
                 }
             });

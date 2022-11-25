@@ -35,8 +35,7 @@ const AddList = (props) => {
     
 
     useEffect(() => {
-        setInputValue("");
-        setSelectedColor("45B3E7");
+        
     }, []);
 
     const handleOkClick = async () => {

@@ -1,0 +1,48 @@
+.options {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+
+
+    position: absolute;
+    right: 0;
+
+    padding: 10px 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+    z-index: 2;
+    
+}
+
+.dropdownItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdownItem > div {
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.dropdownItem > div:first-child {
+    margin-right: 20px;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 50%;
+    z-index: 1;
+}

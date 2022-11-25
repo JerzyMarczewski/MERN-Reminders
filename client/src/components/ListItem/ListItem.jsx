@@ -1,11 +1,12 @@
 import { useState, useContext, useEffect, useRef, forwardRef } from 'react';
 import { UserContext } from "../../Context/UserContext";
 import { FetchContext } from '../../Context/FetchContext';
+import { Icon } from '@iconify/react';
+import styles from "./ListItem.module.css";
 import axios from "axios";
 
 // TODO: add the possibility of adding and editing the date
 // TODO: make this element look good
-// TODO: add the ability to remove items
 
 
 const ListItem = forwardRef((props, ref) => {
@@ -81,18 +82,38 @@ const ListItem = forwardRef((props, ref) => {
       .catch(err => console.log(err));
   }
 
-    
-    
+  const handleDoneClick = async () => {
+    if (!props.parentList || !props.item)
+      return;
+
+    axios.post(`http://localhost:5000/${username}/lists/items/edit-status`, {
+        listId: props.parentList._id,
+        itemId: props.item._id
+      })
+      .then(() => setFetchIteration(fetchIteration + 1))
+      .catch(err => console.log(err));
+  }
+  
   return (
-    <div>
-        {fetchIteration}
-        <input ref={inputRef}
+    <div className={styles.container}>
+        {!props.newItem 
+          ? <Icon 
+              icon={(props.item.done) ? "material-symbols:circle" : "material-symbols:circle-outline"} 
+              width="32"
+              color="909096"
+              onClick={handleDoneClick}
+            />
+          : <Icon width="32" color="909096" icon={"material-symbols:circle-outline"}/>
+        }
+        <input 
           type="text" 
+          placeholder="new item"
           value={inputValue} 
+          ref={inputRef}
           onChange={e => setInputValue(e.target.value)} 
           onBlur={handleItemBlur}
         />
-        {!props.newItem &&<button onClick={handleRemove}>remove</button>}
+        <Icon icon="mdi:bin-circle-outline" color="red" width="32" onClick={handleRemove}/>
     </div>
   )
 });

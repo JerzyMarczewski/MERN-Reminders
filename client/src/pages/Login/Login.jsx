@@ -16,7 +16,7 @@ const Login = (props) => {
     if (value) navigate("/");
   }, []);
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
     if (!username) return alert("Username is required");
