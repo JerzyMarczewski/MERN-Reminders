@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+}
+
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  
+  width: 80%;
+  padding: 10px 20px;
+  border-radius: 10px;
+
+  background-color: #E3E3E8;
+  color: #909096;
+}
+
+.searchbar > input {
+  width: 100%;
+
+  border: none;
+  background-color: inherit;
+  outline: none;
+  text-align: center;
+  font-size: 1.25em;
+  text-decoration: none;
+}
+
+.myLists {
+  align-self: flex-start;
+  padding: 40px 10% 25px;
+}
+
+.listsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.addListButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+  bottom: 0;
+  right: 0;
+  margin: 20px 10%;
+  cursor: pointer;
+}
+
+.addListButton > div:last-child {
+  margin-left: 3px;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 30%;
+
+    border-right: 1px solid #C6C6C8;
+  }
+
+  .searchbar {
+    margin: 20px 0 0 0;
+  }
+
+  .myLists {
+    align-self: flex-start;
+    padding: 20px 10%;
+    font-size: 1.25em;
+  }
+
+}
