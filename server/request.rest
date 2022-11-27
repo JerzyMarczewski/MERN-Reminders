@@ -15,7 +15,7 @@ POST http://localhost:5000/jurek/lists/remove
 Content-Type: application/json
 
 {
-    "id": "636d34304a38e0092fde5fec"
+    "listId": "636d34304a38e0092fde5fec"
 }
 ### add item to a list with a given id
 POST http://localhost:5000/jurek/lists/items/add

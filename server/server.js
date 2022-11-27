@@ -36,18 +36,16 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
-  User.findOne({ username: username })
-    .then((user) => {
-      if (!user) return res.json({ ok: false, message: "User doesn't exist" });
+  const user = await User.findOne({ username: username });
 
-      return bcrypt.compare(password, user.password);
-    })
-    .then((comparingResult) => {
-      if (!comparingResult)
-        return res.json({ ok: false, message: "Wrong username or password" });
+  if (!user) return res.json({ ok: false, message: "User doesn't exist" });
 
-      return res.json({ ok: true, message: "User logged in successfully" });
-    });
+  const comparingResult = await bcrypt.compare(password, user.password);
+
+  if (!comparingResult)
+    return res.json({ ok: false, message: "Wrong username or password" });
+
+  return res.json({ ok: true, message: "User logged in successfully" });
 });
 
 app.get("/:username/lists", async (req, res) => {
