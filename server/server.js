@@ -1,3 +1,5 @@
+// TODO: change paths so that the username can't be seen in a route
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -176,8 +178,8 @@ app.listen(process.env.PORT, () =>
 
 mongoose.connect(process.env.DB, { useNewUrlParser: true });
 mongoose.connection.on("error", (e) => {
-  console.log("mongo connect error!");
+  console.log("Mongo connect error!");
 });
 mongoose.connection.on("connected", () => {
-  console.log("connected to mongo");
+  console.log("Connected to mongo");
 });

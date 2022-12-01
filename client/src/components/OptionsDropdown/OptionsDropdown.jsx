@@ -7,7 +7,7 @@ import axios from "axios";
 import { useMountTransition } from "../../hooks/useMountTransition";
 import AddList from "../AddList/AddList";
 
-const Dropdown = (props) => {
+const OptionsDropdown = (props) => {
   const { value: username } = useContext(UserContext);
   const { fetchIteration, setFetchIteration } = useContext(FetchContext);
   const [showDoneItems, setShowDoneItems] = props.showDoneItems;
@@ -77,4 +77,4 @@ const Dropdown = (props) => {
   );
 };
 
-export default Dropdown;
+export default OptionsDropdown;

@@ -29,34 +29,46 @@ const AllListsMenu = (props) => {
         />
       </div>
       <p className={styles.myLists}>My lists</p>
-      <div className={styles.listsContainer}>
-        {props.lists && !props.isLoading
-          ? props.lists.filter((list) =>
-              list.name.toLowerCase().includes(searchInput.toLowerCase())
-            ).length
-            ? props.lists
-                .filter((list) =>
-                  list.name.toLowerCase().includes(searchInput.toLowerCase())
-                )
-                .map((list) => (
-                  <ListMenuButton
-                    id={list.id}
-                    key={list.id}
-                    list={list}
-                    onClickCustomEvent={() => props.onListClick(list)}
-                  />
-                ))
-            : searchInput === ""
-            ? "You don't have any lists yet"
-            : "No matches found"
-          : "Loading..."}
-      </div>
       <div
-        className={styles.addListButton}
-        onClick={() => setAddListIsMounted(true)}
+        className={
+          props.isLoading
+            ? `${styles.listsContainer} ${styles.loading}`
+            : styles.listsContainer
+        }
       >
-        <Icon icon="fluent:add-circle-24-filled" />
-        <div>Add list</div>
+        {props.lists && !props.isLoading ? (
+          props.lists.filter((list) =>
+            list.name.toLowerCase().includes(searchInput.toLowerCase())
+          ).length ? (
+            props.lists
+              .filter((list) =>
+                list.name.toLowerCase().includes(searchInput.toLowerCase())
+              )
+              .map((list) => (
+                <ListMenuButton
+                  id={list.id}
+                  key={list.id}
+                  list={list}
+                  onClickCustomEvent={() => props.onListClick(list)}
+                />
+              ))
+          ) : searchInput === "" ? (
+            "You don't have any lists yet"
+          ) : (
+            "No matches found"
+          )
+        ) : (
+          <div className={styles.spinner}></div>
+        )}
+      </div>
+      <div className={styles.addListContainer}>
+        <div
+          className={styles.addListButton}
+          onClick={() => setAddListIsMounted(true)}
+        >
+          <Icon icon="fluent:add-circle-24-filled" />
+          <div>Add list</div>
+        </div>
       </div>
     </div>
   );

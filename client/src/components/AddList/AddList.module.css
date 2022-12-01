@@ -1,5 +1,5 @@
 .container {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -7,8 +7,9 @@
     overflow: hidden;
     
     bottom: 0;
+    left: 0;
     top: 99%;
-    width: 100%;
+    width: 100vw;
     padding: 0 10%;
     
     background-color: #F8F8FC;
@@ -16,7 +17,7 @@
     border-radius: 25px 25px 0 0;
     box-shadow: none;
     opacity: 0;
-    z-index: 2;
+    z-index: 4;
     transition: top 0.5s ease, opacity 0.5s ease, box-shadow 1s ease;
 }
 
@@ -25,6 +26,22 @@
    opacity: 1;
    box-shadow: 0px 0px 100px 100px rgba(66, 68, 90, 0.2);
 }
+
+.background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0;
+    z-index: 4;
+    transition: opacity 0.5s ease;
+}
+
+.background.in.visible {
+    opacity: 0.6;
+ }
 
 .controls {
     display: grid;
@@ -39,17 +56,21 @@
     cursor: pointer;
 }
 
-.controls > div {
+.cancelContainer,
+.okContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     color: #45B3E7;
     cursor: pointer;
 }
-
-.controls > div:first-child {
-    text-align: start;
+.cancelContainer {
+    justify-content: flex-start;
 }
 
-.controls > div:last-child {
-    text-align: end;
+.okContainer {
+    justify-content: flex-end;
 }
 
 .listPreview {
@@ -159,4 +180,32 @@
     border-style: solid;
     border-color: #000;
     border-radius: 50%;
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 600px;
+        bottom: auto;
+        left: 50%;
+        top: 99%;
+        transform: translate(-50%, -50%);
+        width: 100vw;
+        padding: 0 10%;
+        
+        background-color: #F8F8FC;
+        border: 1px solid #000;
+        border-radius: 25px;
+        box-shadow: none;
+        opacity: 0;
+        z-index: 4;
+        transition: top 0.5s ease, opacity 0.5s ease, box-shadow 1s ease;
+    }
+    
+    .container.in.visible {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+       opacity: 1;
+       box-shadow: 0px 0px 100px 100px rgba(66, 68, 90, 0.2);
+    }
 }
