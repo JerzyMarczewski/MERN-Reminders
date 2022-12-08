@@ -54,7 +54,7 @@ const AddList = (props) => {
 
     if (!props.currentList) {
       axios
-        .post(`${process.env.REACT_APP_SERVER_URL}/lists/add`, {
+        .post(`${process.env.REACT_APP_SERVER_URL}/${username}/lists/add`, {
           name: inputValue,
           color: selectedColor,
           icon: selectedIcon,
