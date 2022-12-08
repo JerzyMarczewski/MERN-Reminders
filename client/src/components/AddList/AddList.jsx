@@ -54,7 +54,7 @@ const AddList = (props) => {
 
     if (!props.currentList) {
       axios
-        .post(`http://localhost:5000/${username}/lists/add`, {
+        .post(`${process.env.REACT_APP_SERVER_URL}/lists/add`, {
           name: inputValue,
           color: selectedColor,
           icon: selectedIcon,
