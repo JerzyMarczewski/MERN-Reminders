@@ -1,9 +1,7 @@
-// TODO: change paths so that the username can't be seen in a route
-
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const User = require("./models/User");
 const mongoose = require("mongoose");
