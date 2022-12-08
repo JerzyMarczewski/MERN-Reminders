@@ -21,7 +21,6 @@ const ListSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // ! length must be 6
   color: {
     type: String,
     default: "45B3E7",

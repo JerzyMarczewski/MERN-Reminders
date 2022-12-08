@@ -22,7 +22,7 @@ const Main = (props) => {
     data: lists,
     err: listsError,
     loading: listsLoading,
-  } = useFetch(`http://localhost:5000/${value}/lists`, fetchIteration);
+  } = useFetch(`/${value}/lists`, fetchIteration);
   const currentList = useGetCurrentList(lists, clickedList);
 
   useEffect(() => {

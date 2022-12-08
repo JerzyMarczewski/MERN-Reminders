@@ -4,8 +4,6 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { FetchContext } from "../../Context/FetchContext";
 import axios from "axios";
-import { useMountTransition } from "../../hooks/useMountTransition";
-import AddList from "../AddList/AddList";
 
 const OptionsDropdown = (props) => {
   const { value: username } = useContext(UserContext);
@@ -19,7 +17,7 @@ const OptionsDropdown = (props) => {
 
     if (props.currentList) {
       axios
-        .post(`http://localhost:5000/${username}/lists/remove`, {
+        .post(`/${username}/lists/remove`, {
           listId: props.currentList._id,
         })
         .then(() => setFetchIteration(fetchIteration + 1))

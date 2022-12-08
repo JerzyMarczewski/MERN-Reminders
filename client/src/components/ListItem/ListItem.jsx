@@ -5,9 +5,6 @@ import { Icon } from "@iconify/react";
 import styles from "./ListItem.module.css";
 import axios from "axios";
 
-// TODO: add the possibility of adding and editing the date
-// TODO: make this element look good
-
 const ListItem = forwardRef((props, ref) => {
   const { value: username } = useContext(UserContext);
   const { fetchIteration, setFetchIteration } = useContext(FetchContext);

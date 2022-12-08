@@ -18,6 +18,7 @@ const Register = (props) => {
 
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
+    console.log(process.env.REACT_APP_SERVER_URL);
 
     if (!username)
       return toast.error("Username is required", {
@@ -33,7 +34,7 @@ const Register = (props) => {
       });
 
     axios
-      .post("http://localhost:5000/register", {
+      .post(`/register`, {
         username: username,
         password: password1,
       })

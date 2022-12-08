@@ -32,7 +32,7 @@ const Login = (props) => {
       });
 
     axios
-      .post("http://localhost:5000/login", {
+      .post(`/login`, {
         username: username,
         password: password,
       })
