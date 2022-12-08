@@ -6,13 +6,7 @@
 
   width: 100%;
   height: 100%;
-  background-position: 0px 0px,0px 0px,0px 0px,0px 0px,0px 0px;
-  background-image: 
-    repeating-linear-gradient(315deg, #00FFFF2E 92%, #073AFF00 100%),
-    repeating-radial-gradient(75% 75% at 238% 218%, #00FFFF12 30%, #073AFF14 39%),
-    radial-gradient(99% 99% at 109% 2%, #00C9FFFF 0%, #073AFF00 100%),
-    radial-gradient(99% 99% at 21% 78%, #5200FF 0%, #073AFF00 100%),
-    radial-gradient(160% 154% at 711px -303px, #45B3E7 0%, #073AFFFF 100%);
+  background-image: conic-gradient(from 36deg at 50%, #a100ffff, #119cfdff);
 }
 
 .registerBox {
@@ -34,8 +28,8 @@
 
 .registerBox > h1 {
   color: #fff;
-  font-size: 3em;
-  margin: 30px 0;
+  font-size: 2em;
+  margin: 15px 0;
 }
 
 .registerForm {
@@ -67,12 +61,13 @@
   text-decoration: none;
   padding: 5px 10px;
   font-size: 1em;
+  width: 200px;
 }
 
 .submitButton {
-  margin: 15px 0;
+  margin: 10px 0;
   border: 3px solid #fff;
-  border-radius: 25px;
+  border-radius: 20px;
   background-color: #5200FF;
   color: #fff;
   padding: 10px 30px;
@@ -85,10 +80,14 @@
   color: #5200FF;
 }
 
+.submitButton > h2 {
+  font-size: 1.25em;
+}
+
 .bottomText {
   margin: 10px 0;
   color: rgba(0, 0, 0, .75);
-  font-size: 0.75em;
+  font-size: 0.55em;
 }
 
 .bottomText > a,

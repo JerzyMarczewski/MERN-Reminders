@@ -21,6 +21,12 @@
     height: 80px;
 }
 
+.logo {
+  background: -webkit-linear-gradient(#a100ffff, #119cfdff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .userButton {
     display: flex;
     flex-direction: row;
@@ -31,14 +37,10 @@
     opacity: 50;
 }
 
-
-
 .listAndActiveListContainer {
     width: 100%;
     height: calc(100% - 80px);
 }
-
-
 
 @media screen and (min-width: 1024px) {
     .navbar {

@@ -4,6 +4,8 @@ import { UserContext } from "../../Context/UserContext";
 import axios from "axios";
 import styles from "./Login.module.css";
 import { Icon } from "@iconify/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = (props) => {
   const navigate = useNavigate();
@@ -20,8 +22,14 @@ const Login = (props) => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username) return alert("Username is required");
-    if (!password) return alert("Password is required");
+    if (!username)
+      return toast.error("Username is required", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    if (!password)
+      return toast.error("Password is required", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
 
     axios
       .post("http://localhost:5000/login", {
@@ -29,8 +37,10 @@ const Login = (props) => {
         password: password,
       })
       .then((res) => {
-        console.log(res.data);
-        if (!res.data.ok) return alert(res.data.message);
+        if (!res.data.ok)
+          return toast.error(res.data.message, {
+            position: toast.POSITION.TOP_RIGHT,
+          });
 
         setValue(username.toLowerCase());
         navigate("/");
@@ -77,6 +87,7 @@ const Login = (props) => {
           Don't have an account? <Link to="/register">Register</Link>
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };

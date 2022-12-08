@@ -4,8 +4,8 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import styles from "./Register.module.css";
 import { Icon } from "@iconify/react";
-
-// TODO: Change password input to text for production
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = (props) => {
   const navigate = useNavigate();
@@ -19,9 +19,18 @@ const Register = (props) => {
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
 
-    if (!username) return alert("username is required");
-    if (!password1 || !password2) return alert("password fields are required");
-    if (password1 !== password2) return alert("passwords must be the same");
+    if (!username)
+      return toast.error("Username is required", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    if (!password1 || !password2)
+      return toast.error("Password fields are required", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    if (password1 !== password2)
+      return toast.error("Passwords must be the same", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
 
     axios
       .post("http://localhost:5000/register", {
@@ -88,6 +97,7 @@ const Register = (props) => {
           Alredy have an account? <Link to="/login">Login</Link>
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };
