@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
-const passport = require("passport");
 const User = require("./models/User");
 const mongoose = require("mongoose");
 require("dotenv").config({ path: __dirname + "/.env" });
@@ -54,7 +53,6 @@ app.get("/:username/lists", async (req, res) => {
   res.send(user.lists);
 });
 
-// ! only for testing
 app.post("/:username/lists/add", async (req, res) => {
   const { name, color, icon } = req.body;
 
@@ -179,5 +177,5 @@ mongoose.connection.on("error", (e) => {
   console.log("Mongo connect error!");
 });
 mongoose.connection.on("connected", () => {
-  console.log("Connected to mongo");
+  console.log("Connected to Mongo");
 });
