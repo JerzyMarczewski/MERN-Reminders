@@ -5,8 +5,6 @@ import { UserContext } from "../../Context/UserContext";
 import { FetchContext } from "../../Context/FetchContext";
 import axios from "axios";
 
-// TODO: add clickable background
-
 const COLORS = ["45B3E7", "0078ff", "bd00ff", "ff9a00", "01ff1f", "e3ff00"];
 const ICONS = [
   "ic:round-format-list-bulleted",

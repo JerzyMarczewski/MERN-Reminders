@@ -184,13 +184,12 @@
 
 @media screen and (min-width: 1024px) {
     .container {
-        max-width: 600px;
+        max-width: 70%;
         bottom: auto;
         left: 50%;
         top: 99%;
         transform: translate(-50%, -50%);
-        width: 100vw;
-        padding: 0 10%;
+        padding: 20px 10%;
         
         background-color: #F8F8FC;
         border: 1px solid #000;
