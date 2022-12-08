@@ -17,7 +17,7 @@ const OptionsDropdown = (props) => {
 
     if (props.currentList) {
       axios
-        .post(`/${username}/lists/remove`, {
+        .post(`${process.env.REACT_APP_SERVER_URL}/${username}/lists/remove`, {
           listId: props.currentList._id,
         })
         .then(() => setFetchIteration(fetchIteration + 1))

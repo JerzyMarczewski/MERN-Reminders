@@ -9,6 +9,7 @@ import { FetchContext } from "../../Context/FetchContext";
 import { useGetCurrentList } from "../../hooks/useGetCurrentList";
 import AllListsMenu from "../../components/AllListsMenu/AllListsMenu";
 import UserDropdown from "../../components/UserDropdown/UserDropdown";
+import axios from "axios";
 
 const Main = (props) => {
   const navigate = useNavigate();
@@ -22,7 +23,10 @@ const Main = (props) => {
     data: lists,
     err: listsError,
     loading: listsLoading,
-  } = useFetch(`/${value}/lists`, fetchIteration);
+  } = useFetch(
+    `${process.env.REACT_APP_SERVER_URL}/${value}/lists`,
+    fetchIteration
+  );
   const currentList = useGetCurrentList(lists, clickedList);
 
   useEffect(() => {

@@ -32,7 +32,7 @@ const Login = (props) => {
       });
 
     axios
-      .post(`/login`, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/login`, {
         username: username,
         password: password,
       })
