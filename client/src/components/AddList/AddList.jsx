@@ -97,7 +97,10 @@ const AddList = (props) => {
             className={styles.listIcon}
             style={{ backgroundColor: `#${selectedColor}` }}
           >
-            <Icon icon={selectedIcon} width="80" />
+            <Icon
+              icon={selectedIcon}
+              width={window.innerWidth >= 1024 ? "40" : "80"}
+            />
           </div>
           <div className={styles.listName}>
             <input
