@@ -17,7 +17,7 @@
     border-radius: 25px 25px 0 0;
     box-shadow: none;
     opacity: 0;
-    z-index: 4;
+    z-index: 5;
     transition: top 0.5s ease, opacity 0.5s ease, box-shadow 1s ease;
 }
 
@@ -196,7 +196,6 @@
         border-radius: 25px;
         box-shadow: none;
         opacity: 0;
-        z-index: 4;
         transition: top 0.5s ease, opacity 0.5s ease, box-shadow 1s ease;
     }
     
