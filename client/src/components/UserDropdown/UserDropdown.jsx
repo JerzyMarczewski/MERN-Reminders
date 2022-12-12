@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const UserDropdown = () => {
   const navigate = useNavigate();
-  const { setValue } = useContext(UserContext);
+  const { value, setValue } = useContext(UserContext);
 
   const [dropdownShown, setDropdownShown] = useState(false);
 
@@ -19,7 +19,7 @@ const UserDropdown = () => {
     return (
       <div className={styles.options} onClick={() => setDropdownShown(true)}>
         <div className={styles.userButton}>
-          <h4>User</h4>
+          <h5>{value}</h5>
           <Icon icon="gridicons:dropdown" />
         </div>
       </div>
@@ -29,7 +29,7 @@ const UserDropdown = () => {
     <>
       <div className={styles.user}>
         <div className={styles.userButton}>
-          <h4>User</h4>
+          <h5>{value}</h5>
           <Icon icon="gridicons:dropdown" />
         </div>
         <div className={styles.dropdown}>
