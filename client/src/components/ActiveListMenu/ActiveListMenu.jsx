@@ -5,6 +5,7 @@ import ListItem from "../ListItem/ListItem";
 import OptionsDropdown from "../OptionsDropdown/OptionsDropdown";
 import { useMountTransition } from "../../hooks/useMountTransition";
 import AddList from "../AddList/AddList";
+import { useEffect } from "react";
 
 const ActiveListMenu = (props) => {
   const [itemCreationShown, setItemCreationShown] = useState(false);
@@ -18,6 +19,10 @@ const ActiveListMenu = (props) => {
   // for AddList component
   const [addListIsMounted, setAddListIsMounted] = useState(false);
   const addListHasTransitionedIn = useMountTransition(addListIsMounted, 500);
+
+  useEffect(() => {
+    setItemCreationShown(false);
+  }, [props]);
 
   const handleClick = (e) => {
     if (myListsRef && myListsRef.current.contains(e.target)) {
@@ -121,10 +126,7 @@ const ActiveListMenu = (props) => {
         ) : (
           ""
         )}
-        <div
-          style={{ height: "auto", minHeight: "50px" }}
-          ref={whitespaceRef}
-        ></div>
+        <div className={styles.whitespace} ref={whitespaceRef}></div>
       </div>
     </div>
   );
