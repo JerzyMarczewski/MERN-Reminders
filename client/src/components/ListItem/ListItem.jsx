@@ -122,6 +122,11 @@ const ListItem = forwardRef((props, ref) => {
       <input
         type="text"
         placeholder="new item"
+        style={
+          props.item && props.item.done
+            ? { textDecoration: "line-through" }
+            : { textDecoration: "none" }
+        }
         value={inputValue}
         ref={inputRef}
         onChange={(e) => setInputValue(e.target.value)}

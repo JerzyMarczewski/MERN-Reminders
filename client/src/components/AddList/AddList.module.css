@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    overflow: hidden;
+    overflow: auto;
     
     bottom: 0;
     left: 0;
@@ -19,6 +19,7 @@
     opacity: 0;
     z-index: 5;
     transition: top 0.5s ease, opacity 0.5s ease, box-shadow 1s ease;
+
 }
 
 .container.in.visible {
@@ -41,7 +42,7 @@
 
 .background.in.visible {
     opacity: 0.6;
- }
+}
 
 .controls {
     display: grid;
@@ -80,7 +81,7 @@
     align-items: center;
 
     width: 100%;
-    padding: 20px 0;
+    padding: 20px 60px;
     margin: 20px 0;
 
     background-color: #fff;
@@ -92,8 +93,8 @@
     justify-content: center;
     align-items: center;
 
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
     margin: 10px 0;
     border-radius: 50%;
 }
@@ -104,7 +105,7 @@
     justify-content: flex-start;
     align-items: center;
     
-    width: 80%;
+    width: 100%;
     margin: 10px 0;
     padding: 10px 20px;
     border-radius: 10px;
@@ -120,7 +121,7 @@
     background-color: #E3E3E8;
     outline: none;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.5rem;
     text-decoration: none;
 }
 
@@ -134,7 +135,7 @@
     flex-flow: row wrap;
 
     width: 100%;
-    padding: 20px 20px;
+    padding: 20px 60px;
     margin: 0px 0;
 
     background-color: #fff;
@@ -143,8 +144,8 @@
 
 .colorOption{
     margin: 4px;
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     box-sizing: border-box;
     
     border-width: 0;
@@ -159,7 +160,7 @@
     flex-flow: row wrap;
 
     width: 100%;
-    padding: 20px 20px;
+    padding: 20px 60px;
     margin: 20px 0;
 
     background-color: #fff;
@@ -172,14 +173,81 @@
     align-items: center;
     
     margin: 4px;
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     box-sizing: border-box;
     background-color: #909096;
     border-width: 0;
     border-style: solid;
     border-color: #000;
     border-radius: 50%;
+}
+
+@media screen and (max-width: 425px) {
+    .container {
+        width: 100%;
+        padding: 10px 30px;
+    }
+
+    .controls {
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    .listPreview {
+        width: 100%;
+        padding: 10px 20px;
+        margin: 0;
+    }
+    
+    .listIcon {
+        width: 90px;
+        height: 90px;
+        margin: 5px 0;
+    }
+    
+    .listName {
+        width: 80%;
+        margin: 10px 0;
+        padding: 10px 20px;
+        border-radius: 10px;
+    }
+    
+    .listName > input {
+        width: 100%;
+        font-size: 1.15rem;
+    }
+    
+    .colorSelect {
+        width: 100%;
+        padding: 10px 35px;
+        margin: 10px 0;
+    
+        background-color: #fff;
+        border-radius: 20px;
+    }
+    
+    .colorOption{
+        margin: 4px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .iconSelect {
+        width: 100%;
+        padding: 10px 35px;
+        margin: 0px 0;
+    
+        background-color: #fff;
+        border-radius: 20px;
+    }
+    
+    .iconCircle {
+        margin: 4px;
+        width: 45px;
+        height: 45px;
+    }
+    
 }
 
 @media screen and (min-width: 1024px) {
@@ -221,8 +289,8 @@
     }
 
     .listIcon {
-        width: 70px;
-        height: 70px;
+        width: 75px;
+        height: 75px;
         margin: 5px 0;
     }
 
@@ -248,5 +316,17 @@
     .iconSelect {
         padding: 10px 20px;
         margin: 10px 0;
+    }
+
+    .colorOption{
+        margin: 4px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .iconCircle {
+        margin: 4px;
+        width: 45px;
+        height: 45px;
     }
 }

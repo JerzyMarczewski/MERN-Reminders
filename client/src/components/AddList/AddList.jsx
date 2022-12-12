@@ -5,7 +5,19 @@ import { UserContext } from "../../Context/UserContext";
 import { FetchContext } from "../../Context/FetchContext";
 import axios from "axios";
 
-const COLORS = ["45B3E7", "0078ff", "bd00ff", "ff9a00", "01ff1f", "e3ff00"];
+const COLORS = [
+  "45B3E7",
+  "0078ff",
+  "bd00ff",
+  "d696bb",
+  "fa3c4c",
+  "ff9a00",
+  "fff000",
+  "01ff1f",
+  "41bc66",
+  "967259",
+  "444444",
+];
 const ICONS = [
   "ic:round-format-list-bulleted",
   "ic:round-school",
@@ -99,7 +111,8 @@ const AddList = (props) => {
           >
             <Icon
               icon={selectedIcon}
-              width={window.innerWidth >= 1024 ? "40" : "80"}
+              width={window.innerWidth >= 1024 ? "50" : "60"}
+              color="ffffff"
             />
           </div>
           <div className={styles.listName}>
@@ -134,7 +147,7 @@ const AddList = (props) => {
               style={icon === selectedIcon ? { borderWidth: "2px" } : {}}
               onClick={() => setSelectedIcon(icon)}
             >
-              <Icon icon={icon} />
+              <Icon icon={icon} width="30" color="ffffff" />
             </div>
           ))}
         </div>
