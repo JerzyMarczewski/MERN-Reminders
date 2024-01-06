@@ -4,26 +4,29 @@ The Reminders Web Application is a robust task management system inspired by App
 
 Key Features:
 
-1. Intuitive User Interface:
-        The frontend is built with React, providing users with a seamless and intuitive experience. The interface is user-friendly, ensuring efficient navigation and a visually appealing design.
+    Intuitive User Interface:
+        The frontend, built with React, offers a seamless and intuitive user experience. The interface is designed for ease of use, facilitating efficient navigation and featuring an aesthetically pleasing design.
 
-2. Task Management:
-        Users can create, edit, and delete tasks with ease. The application supports the organization of tasks into lists or categories, allowing for a structured approach to task management.
+    Task Management:
+        Users can effortlessly create, edit, and delete tasks. The application supports task organization into lists or categories, allowing for a structured and personalized approach to task management.
 
-3. Secure Authentication:
-        User authentication is implemented to ensure the security of personal data. Authentication features protect user accounts and allow for personalized task management experiences.
+    Secure Authentication with Password Hashing:
+        Robust user authentication is implemented, ensuring the security of user data. Passwords are securely hashed using industry-standard cryptographic algorithms, safeguarding user accounts against unauthorized access.
 
-4. RESTful API:
-        The backend is built on Node.js and Express, offering a robust and scalable RESTful API. This API facilitates seamless communication between the frontend and backend, supporting various CRUD operations for tasks and user-related data.
+    RESTful API:
+        The backend, powered by Node.js and Express, hosts a scalable and efficient RESTful API. This API facilitates seamless communication between the frontend and backend, supporting various CRUD operations for tasks and user-related data.
 
-5. Database Integration:
-        MongoDB, a NoSQL database, is used in conjunction with Mongoose for data storage and retrieval. This combination provides a flexible and scalable solution for managing task-related information.
+    Database Integration:
+        MongoDB, a NoSQL database, is integrated with Mongoose for efficient data storage and retrieval. This combination provides flexibility and scalability for managing task-related information.
 
-6. Scalability and Performance:
-        The architecture is designed to be scalable, allowing the application to handle a growing user base. The use of asynchronous programming and efficient database queries ensures optimal performance.
+    Customizable Lists with Color and Icons:
+        Users can personalize their task lists by changing colors and assigning icons. This feature enhances the user experience, allowing for a more visually engaging and tailored task management environment.
 
-7. Responsive Design:
-        The web application is responsive, ensuring a consistent user experience across a variety of devices, including desktops, tablets, and mobile phones.
+    Scalability and Performance:
+        The architecture is designed for scalability, enabling the application to handle a growing user base. Asynchronous programming and optimized database queries ensure optimal performance even under increased load.
+
+    Responsive Design:
+        The web application is responsive, offering a consistent user experience across various devices, including desktops, tablets, and mobile phones.
 
 ---
 
