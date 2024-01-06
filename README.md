@@ -10,22 +10,19 @@ Key Features:
 2. Task Management:
         Users can create, edit, and delete tasks with ease. The application supports the organization of tasks into lists or categories, allowing for a structured approach to task management.
 
-3. Real-time Updates:
-        The application utilizes WebSocket technology to enable real-time updates. Users receive instant notifications about task updates, ensuring that everyone stays in sync with the latest changes.
-
-4. Secure Authentication:
+3. Secure Authentication:
         User authentication is implemented to ensure the security of personal data. Authentication features protect user accounts and allow for personalized task management experiences.
 
-5. RESTful API:
+4. RESTful API:
         The backend is built on Node.js and Express, offering a robust and scalable RESTful API. This API facilitates seamless communication between the frontend and backend, supporting various CRUD operations for tasks and user-related data.
 
-6. Database Integration:
+5. Database Integration:
         MongoDB, a NoSQL database, is used in conjunction with Mongoose for data storage and retrieval. This combination provides a flexible and scalable solution for managing task-related information.
 
-7. Scalability and Performance:
+6. Scalability and Performance:
         The architecture is designed to be scalable, allowing the application to handle a growing user base. The use of asynchronous programming and efficient database queries ensures optimal performance.
 
-8. Responsive Design:
+7. Responsive Design:
         The web application is responsive, ensuring a consistent user experience across a variety of devices, including desktops, tablets, and mobile phones.
 
 ---
