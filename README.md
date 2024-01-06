@@ -8,4 +8,4 @@
 
 ## ![alt text](./client/public/Demo.png "Title")
 
-[Click to view live demo](https://mern-reminders-client.onrender.com)
+[Click to view live demo](https://mern-reminders-client.onrender.com) (Warning, server may not load due to inactivity)
